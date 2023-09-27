@@ -19,12 +19,15 @@ public class Principal {
         ContaIvestimento minhaConta = new ContaIvestimento(titular1, 123, 987);
         ContaEspecial suaConta = new ContaEspecial(titular2, 333, 987, 1000);
 
+
         minhaConta.depositar(15_000);
         minhaConta.sacar(1_000);
         minhaConta.creditarRendimentos(0.8);
+        minhaConta.debitarTarifaMensal();
 
         suaConta.depositar(15_000);
         suaConta.sacar(15_500);
+        suaConta.debitarTarifaMensal();
 
         caixaEletronico.imprimirSaldo(minhaConta);
         System.out.println();
