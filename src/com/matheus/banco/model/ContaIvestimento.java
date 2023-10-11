@@ -1,5 +1,8 @@
 package com.matheus.banco.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class ContaIvestimento extends Conta {
 
 
@@ -9,13 +12,15 @@ public class ContaIvestimento extends Conta {
 
     @Override
     public void debitarTarifaMensal() {
-        if (getSaldo() <10_000){
-            sacar(30);
+        if (getSaldo().compareTo(new BigDecimal("10000")) < 0){
+            sacar(new BigDecimal("30"));
         }
     }
 
-    public void creditarRendimentos(double percentualJuros){
-        double valorRendimentos = getSaldo() * percentualJuros / 100;
+    public void creditarRendimentos(BigDecimal percentualJuros){
+        BigDecimal valorRendimentos = getSaldo().multiply(percentualJuros)
+                .divide(new BigDecimal("100"),2, RoundingMode.HALF_EVEN);
+        //BigDecimal valorRendimentos = getSaldo() * percentualJuros / 100;
         depositar(valorRendimentos);
     }
 

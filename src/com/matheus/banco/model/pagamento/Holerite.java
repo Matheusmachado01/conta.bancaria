@@ -2,22 +2,24 @@ package com.matheus.banco.model.pagamento;
 
 import com.matheus.banco.model.Pessoa;
 
+import java.math.BigDecimal;
+
 public class Holerite implements DocumentoPagavel {
 
     private Pessoa funcionario;
-    private double valorHora;
+    private BigDecimal valorHora;
     private int quatidadeHoras;
     private boolean pago;
 
-    public Holerite(Pessoa funcionario, double valorHora, int quatidadeHoras) {
+    public Holerite(Pessoa funcionario, BigDecimal valorHora, int quatidadeHoras) {
         this.funcionario = funcionario;
         this.valorHora = valorHora;
         this.quatidadeHoras = quatidadeHoras;
     }
 
     @Override
-    public double getValorTotal() {
-        return valorHora * quatidadeHoras;
+    public BigDecimal getValorTotal() {
+        return valorHora.multiply(new BigDecimal(quatidadeHoras));
     }
 
     @Override
